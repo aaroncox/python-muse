@@ -13,9 +13,13 @@ class MuseNodeRPC(GrapheneWebsocketRPC):
         self.chain_params = self.get_network()
 
     def register_apis(self):
-        self.api_id["database"] = self.database(api_id=1)
-        self.api_id["history"] = self.history(api_id=1)
-        self.api_id["network_broadcast"] = self.network_broadcast(api_id=1)
+        # ----
+        # Disabled registering of APIs since they aren't currently working
+        # ----
+        print("Registering APIs Disabled")
+        # self.api_id["database"] = self.database(api_id=1)
+        # self.api_id["history"] = self.history(api_id=1)
+        # self.api_id["network_broadcast"] = self.network_broadcast(api_id=1)
 
     def rpcexec(self, payload):
         """ Execute a call by sending the payload.
@@ -73,9 +77,13 @@ class MuseNodeRPC(GrapheneWebsocketRPC):
         """ Identify the connected network. This call returns a
             dictionary with keys chain_id, core_symbol and prefix
         """
-        props = self.get_chain_properties()
-        chain_id = props["chain_id"]
+        # ----
+        # Disabled chain validation since get_chain_properties doesn't return the chain ID to comapre against
+        # ----
+        # props = self.get_chain_properties()
+        # chain_id = props["chain_id"]
         for k, v in known_chains.items():
-            if v["chain_id"] == chain_id:
-                return v
-        raise Exception("Connecting to unknown network!")
+            return v
+        #     if v["chain_id"] == chain_id:
+        #         return v
+        # raise Exception("Connecting to unknown network!")
